@@ -13,12 +13,12 @@ const SignupSchema = Yup.object().shape({
     .test(
       "name",
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
-      value => /^[a-zA-Zа-яА-Я]+((['][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/.test(value)
+      value => /^[a-zA-Zа-яА-ЯіІїЇ ]+((['][a-zA-Zа-яА-ЯіІїЇ ])?[a-zA-Zа-яА-ЯіІїЇ]*)*$/.test(value)
     )
     .required('Required'),
-    number: Yup.string()
+    phone: Yup.string()
     .test(
-      "number",
+      "phone",
       "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +",
       value =>/\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}/.test(value)
     )
@@ -41,6 +41,7 @@ export const ContactForm = ()=>{
         }
         dispatch(addContact(contact));
         actions.resetForm();
+        console.log(contact);
   };
 
 return(
@@ -48,7 +49,7 @@ return(
     initialValues={
       {
           name: "",
-          number: "",
+          phone: "",
       }}
       
     validationSchema={SignupSchema}
@@ -62,8 +63,8 @@ return(
     </Label>
     
     <Label>Namber
-    <Input name="number" type="tel"/>
-    <ErrorMsg name="number" component="span"/>
+    <Input name="phone" type="tel"/>
+    <ErrorMsg name="phone" component="span"/>
     </Label>
 
    <button type="submit">
