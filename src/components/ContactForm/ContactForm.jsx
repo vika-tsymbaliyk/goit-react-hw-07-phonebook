@@ -41,7 +41,6 @@ export const ContactForm = ()=>{
         }
         dispatch(addContact(contact));
         actions.resetForm();
-        console.log(contact);
   };
 
 return(
